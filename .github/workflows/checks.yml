@@ -2,15 +2,15 @@ name: Checks
 
 on: push
 
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USER }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
 
 jobs:
   test-lint:
     name: Test and Lint
     runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USER }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
     steps:
       - name: Set up environment variables in dedicated file
         run:
